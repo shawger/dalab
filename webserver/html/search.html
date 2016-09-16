@@ -1,0 +1,46 @@
+<div id ='search-results'>
+<h1>
+{{title}}
+</h1>
+<ul class="list-group">
+  <li class="list-group-item">
+    <div class='row'>
+    <div class='col-xs-2'>
+     <h4>Type</h4>
+    </div>
+    <div class='col-xs-3'>
+      <h4>Name</h4>
+    </div>
+    <div class='col-xs-4'>
+      <h4>Description</h4>
+    </div>
+    <div class='col-xs-3'>
+      <h4>Tags</h4>
+    </div>
+    </div>
+  </li>
+
+  {% for result in results %}
+  <a href="{{result.url}}" class="list-group-item">
+    <div class='row'>
+    <div class='col-xs-2'>
+      <i>{{result.type}}</i>
+    </div>
+    <div class='col-xs-3'>
+      <b>{{result.title}}</b>
+    </div>
+    <div class='col-xs-4'>
+      {{result.description}}
+    </div>
+    <div class='col-xs-3'>
+      <i>
+      {% for tag in result.tags %}
+      #{{tag}}
+      {% endfor %}
+    </i>
+    </div>
+  </div>
+  </a>
+  {% endfor %}
+</ul>
+</div>

@@ -1,0 +1,9 @@
+{
+  "title": "test app",
+  "type": "app",
+  "format": "py",
+  "description": "This is a test app",
+  "scripts": ["testapp/scripts/test.js"],
+  "styles": ["testapp/style/test.css"],
+  "tags": ["tag1","tag2"]
+}
