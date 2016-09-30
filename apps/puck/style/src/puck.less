@@ -1,0 +1,153 @@
+// out: ../puck.css
+
+@import "colors";
+
+@pointsClr: @clr-blue-900;
+@rpColor: @clr-pink-400;
+@hpColor: @clr-deep-purple-400;
+@axisColor: @clr-grey-600;
+
+.page{
+  height: calc(~"100vh - 75px");
+}
+
+.puck-header{
+  height: 40px;
+}
+.team-select, .season-select, .game-select{
+  margin: 10px;
+}
+#season{
+  height: 45%;
+  position: relative;
+}
+#season-graph{
+  height: 100%;
+}
+#season-overlay{
+  position: absolute;
+  top: 10px;
+  left: 70px;
+  width: 200px;
+  background: white;
+  font-size: 12px;
+
+  .table{
+    padding: 0px;
+    margin-bottom: 0px;
+  }
+
+  tr,td,th{
+    padding:2px;
+    line-height: 1em;
+  }
+}
+
+
+#game-graph{
+  height: 45%;
+}
+
+.axis{
+  font-family: inherit;
+
+  path{
+    stroke: @axisColor;
+  }
+
+  .tick{
+    line{
+      stroke: @axisColor;
+    }
+    text{
+      fill: @axisColor;
+    }
+  }
+}
+
+.top{
+  background-color: @clr-green-200;
+}
+
+.bottom{
+  background-color:  @clr-red-200;
+}
+
+.handle-line{
+  stroke: @axisColor;
+}
+
+.handle-circ{
+  fill: @axisColor;
+}
+
+path{
+  fill:none;
+}
+
+.points{
+  stroke: @pointsClr;
+  stroke-width: 2;
+}
+
+.handle-home-pace{
+  fill: @hpColor;
+}
+
+.handle-road-pace{
+  fill: @rpColor;
+}
+
+.handle-points{
+  fill: @pointsClr;
+}
+
+.hp{
+  stroke: @hpColor;
+}
+
+.rp{
+  stroke: @rpColor;
+}
+
+.ticks {
+  font: 10px sans-serif;
+}
+
+.track,
+.track-inset,
+.track-overlay {
+}
+
+.track {
+  stroke: #000;
+  stroke-opacity: 0.0;
+  stroke-width: 1px;
+}
+
+.track-inset {
+  stroke: #ddd;
+  stroke-width: 1px;
+}
+
+.track-overlay {
+  pointer-events: stroke;
+  stroke-width: 100%;
+  cursor: crosshair;
+}
+
+.handle {
+  fill: green;
+  stroke: #000;
+  stroke-opacity: 0.5;
+  stroke-width: 1.25px;
+}
+
+rect{
+  stroke:black;
+  fill: white;
+}
+
+text{
+  font-size: 12px;
+}

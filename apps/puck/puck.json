@@ -1,0 +1,9 @@
+{
+  "title": "NHL Stats",
+  "type": "app",
+  "format": "py",
+  "description": "Some NHL Stats",
+  "scripts": ["/javascript/d3.min.js", "puck/scripts/puck.js"],
+  "styles": ["/style/nv.d3.min.css","puck/style/puck.css"],
+  "tags": ["d3.js","python","mongodb"]
+}

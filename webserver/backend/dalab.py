@@ -8,8 +8,8 @@ from flask import Flask, send_from_directory, request
 from flask.ext.pymongo import PyMongo
 import os
 import sys
-import backend.display.page as page
-import backend.display.search as search
+import display.page as page
+import display.search as search
 
 app = Flask(__name__)
 
@@ -146,13 +146,6 @@ def postView(postName):
     # Render the page
     return p.render()
 
-
-# Serve a file for an app
-@app.route("/app/<appName>/<path:path>")
-def appFile(appName,path):
-
-    return send_from_directory('../../apps/' + appName, path)
-
 # Serve the app it self
 @app.route("/app/<appName>")
 def appView(appName):
@@ -170,8 +163,9 @@ def appView(appName):
 
     # Make sure the applications directory is in the python
     # path
-    appsPath = os.path.join(os.getcwd(), "../../apps")
-    print appsPath
+    dirname, filename = os.path.split(os.path.abspath(__file__))
+    appsPath = os.path.join(dirname, "../../apps")
+    #print appsPath
 
     # Check if allready in sys.path
     if(appsPath not in sys.path):
@@ -194,7 +188,7 @@ def appView(appName):
         return p.renderError(message)
 
     # Import the module
-    view = __import__(appName + "." + appName, fromlist=[''])
+    app = __import__(appName + "." + appName, fromlist=[''])
 
     # Create the page
     p = page.Page()
@@ -209,10 +203,59 @@ def appView(appName):
         return p.renderError(message)
 
     # Render the application
-    p.content = view.render()
+    p.content = app.render(request.args,mongo)
 
     # Render the page
     return p.render()
+
+# Serve up some app data
+@app.route("/app/<appName>/data/<file>.json")
+def appData(appName,file):
+
+    # The id is app_<appName>
+    id = "app_" + appName
+
+    # Find the post in the mongo
+    results = mongo.db.pages.find_one({"_id":id})
+
+    if(results == None):
+        message = "App: %s not found. URL is not correct." % (appName)
+        return message
+
+    # Make sure the applications directory is in the python
+    # path
+    dirname, filename = os.path.split(os.path.abspath(__file__))
+    appsPath = os.path.join(dirname, "../../apps")
+
+    # Check if allready in sys.path
+    if(appsPath not in sys.path):
+        # Add to the system path
+        sys.path.append(appsPath)
+
+    # Get the application path
+    if('path' in results):
+        appPath = results['path']
+    else:
+        message = "App path not found in config"
+        return message
+
+    # Check if the app exists
+    filePath = os.path.join(appPath,appName + ".py")
+    if(not os.path.isfile(filePath)):
+        message = "App file: %s not found." % (filePath)
+        return message
+
+    # Import the module
+    app = __import__(appName + "." + appName, fromlist=[''])
+
+    # Render the page
+    return app.data(mongo, file)
+
+# Serve a file for an app
+@app.route("/app/<appName>/<path:path>")
+def appFile(appName,path):
+
+    return send_from_directory('../../apps/' + appName, path)
 
 if __name__ == "__main__":
     app.run(debug=True)

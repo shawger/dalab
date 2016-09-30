@@ -1,0 +1,166 @@
+<div class='puck-header'>
+  <h3><span id='team-name'>{{defualtTeam}}</span>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#teamPick">Team</button>
+  - <span id='season-name'>{{defualtSeason}}</span>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#seasonPick">Season</button>
+  - <span id='game-name'>{{defualtGame}}</span>
+  <button type="button" class="btn btn-info" data-toggle="modal" data-target="#gamePick">Game</button>
+</h3>
+</div>
+
+<div id='season'>
+  <div id='season-overlay'>
+    <table class="table">
+    <thead>
+      <tr>
+        <th>Stat</th>
+        <th>Total</th>
+        <th>Avg</th>
+        <th>LR</th>
+        <th>CR</th>
+        <th>DR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Points</td>
+        <td id='points-total'>0</td>
+        <td id='points-avg'>0</td>
+        <td id='points-lr'>0</td>
+        <td id='points-cr'>0</td>
+        <td id='points-dr'>0</td>
+      </tr>
+      <tr>
+        <td>Wins</td>
+        <td id='wins-total'>0</td>
+        <td id='wins-avg'>0</td>
+        <td id='wins-lr'>0</td>
+        <td id='wins-cr'>0</td>
+        <td id='wins-dr'>0</td>
+      </tr>
+      <tr>
+        <td>GD</td>
+        <td id='gd-total'>0</td>
+        <td id='gd-avg'>0</td>
+        <td id='gd-lr'>0</td>
+        <td id='gd-cr'>0</td>
+        <td id='gd-dr'>0</td>
+      </tr>
+      <tr>
+        <td>GF</td>
+        <td id='gf-total'>0</td>
+        <td id='gf-avg'>0</td>
+        <td id='gf-lr'>0</td>
+        <td id='gf-cr'>0</td>
+        <td id='gf-dr'>0</td>
+      </tr>
+      <tr>
+        <td>GA</td>
+        <td id='ga-total'>0</td>
+        <td id='ga-avg'>0</td>
+        <td id='ga-lr'>0</td>
+        <td id='ga-cr'>0</td>
+        <td id='ga-dr'>0</td>
+      </tr>
+      <tr>
+        <td>Sv%</td>
+        <td id='sv-total'></td>
+        <td id='sv-avg'>0</td>
+        <td id='sv-lr'>0</td>
+        <td id='sv-cr'>0</td>
+        <td id='sv-dr'>0</td>
+      </tr>
+      <tr>
+        <td>Sh%</td>
+        <td id='sh-total'></td>
+        <td id='sh-avg'>0</td>
+        <td id='sh-lr'>0</td>
+        <td id='sh-cr'>0</td>
+        <td id='sh-dr'>0</td>
+      </tr>
+      <tr>
+        <td>C5v5c</td>
+        <td id='c5v5c-total'></td>
+        <td id='c5v5c-avg'>0</td>
+        <td id='c5v5c-lr'>0</td>
+        <td id='c5v5c-cr'>0</td>
+        <td id='c5v5c-dr'>0</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div id='season-graph'>
+  </div>
+</div>
+
+<div id='game-graph'>
+</div>
+
+<!-- Team Pick Modal -->
+<div id="teamPick" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Pick a Team</h4>
+      </div>
+      <div class="modal-body">
+        {% for team in teams %}
+        <button type="button" class="btn btn-primary team-select" data-dismiss="modal">{{team}}</button>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Season Pick Modal -->
+<div id="seasonPick" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Pick a Season</h4>
+      </div>
+      <div class="modal-body">
+        {% for season in seasons %}
+        <button type="button" class="btn btn-primary season-select" data-dismiss="modal">{{season}}</button>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Game Pick Modal -->
+<div id="gamePick" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Pick a Game</h4>
+      </div>
+      <div class="modal-body">
+        {% for game in games %}
+        <button type="button" class="btn btn-primary game-select" data-dismiss="modal">{{game}}</button>
+        {% endfor %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

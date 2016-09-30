@@ -1,4 +1,9 @@
+import dataGetter as dg
 
 def render():
 
-	return "this is some shit"
+	return dg.seasons
+
+def data(arg):
+
+	return "this is some json"

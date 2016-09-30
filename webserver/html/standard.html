@@ -44,13 +44,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/javascript/bootstrap.min.js"></script>
 
-    <!-- Where d3 goes scripts go -->
-    {% if page.d3 %}
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    {% endif %}
-
-    <script src="/javascript/d3.tip.js"></script>
-
     <!-- Where the page scripts go -->
     {% for script in page.scripts %}
     <script src='{{script}}'></script>
