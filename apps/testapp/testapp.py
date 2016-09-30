@@ -1,8 +1,6 @@
-import dataGetter as dg
-
 def render():
 
-	return dg.seasons
+	return "hi"
 
 def data(arg):
 
