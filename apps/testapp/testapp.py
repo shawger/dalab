@@ -1,7 +1,7 @@
-def render():
+def render(args=None, mongo=None)):
 
 	return "hi"
 
-def data(arg):
+def data(args=None, mongo=None):
 
 	return "this is some json"
